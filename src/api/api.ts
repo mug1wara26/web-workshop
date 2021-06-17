@@ -1,12 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config({path: __dirname + "/.env"});
 import {User} from "@/types/user";
-import {Repo} from "@/types/repo";
 
-export async function getUser(username: string): Promise<User> {
-  return await (await fetch(
-    "https://api.github.com/users/" + username)).json();
-}
+const token = process.env.TOKEN;
 
-export async function getRepos(username: string): Promise<Repo[]> {
-  return await (await fetch(
-    `https://api.github.com/users/${username}/repos`)).json();
+export async function getUser(username: string): Promise<string> {
+  return token + "";
+  // return await (await fetch(
+  //   "https://lichess.org/api/account", {
+  //     headers: {
+  //       "Authorization": "Bearer " + token
+  //     }
+  //   })).json();
 }
